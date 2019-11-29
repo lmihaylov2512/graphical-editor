@@ -10,5 +10,19 @@
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "^8"
+    },
+    "autoload": {
+        "psr-4": {
+            "GraphicalEditor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GraphicalEditor\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "tests": "phpunit tests/ --testdox",
+        "coverage": "phpunit tests/ --coverage-html tests/_output/coverage --whitelist src/"
     }
 }
