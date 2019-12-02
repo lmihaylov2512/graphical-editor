@@ -10,7 +10,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use GraphicalEditor\{
     Image, Dispatcher
 };
-use GraphicalEditor\Exceptions\InvalidCommandException;
+use GraphicalEditor\Exceptions\{
+    InvalidCommandException, TerminateException
+};
 
 $image = new Image();
 $dispatcher = new Dispatcher($image);
@@ -24,5 +26,7 @@ while (true) {
             ->run();
     } catch (InvalidCommandException | InvalidArgumentException $e) {
         echo "{$e->getMessage()}\n";
+    } catch (TerminateException $e) {
+        break;
     }
 }
