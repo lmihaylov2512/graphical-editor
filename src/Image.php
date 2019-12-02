@@ -3,6 +3,7 @@
 namespace GraphicalEditor;
 
 use GraphicalEditor\Exceptions\InvalidPixelException;
+use InvalidArgumentException;
 
 /**
  * Class Image
@@ -19,6 +20,8 @@ class Image
      */
     protected $defaultConfig = [
         'whiteColour' => 'O',
+        'maxCols' => 250,
+        'maxRows' => 250,
     ];
     /**
      * @var array
@@ -50,6 +53,13 @@ class Image
      */
     public function createCanvas(int $cols, int $rows): void
     {
+        if ($cols > $this->config['maxCols']) {
+            throw new InvalidArgumentException('Exceed the maximum columns number');
+        }
+        if ($rows > $this->config['maxRows']) {
+            throw new InvalidArgumentException('Exceed the maximum rows number');
+        }
+
         $this->cols = $cols;
         $this->rows = $rows;
         $this->resetCanvas();
@@ -69,6 +79,16 @@ class Image
     protected function resetCanvas(): void
     {
         $this->canvas = array_fill(1, $this->rows, array_fill(1, $this->cols, $this->config['whiteColour']));
+    }
+
+    /**
+     * Returns the canvas.
+     *
+     * @return array
+     */
+    public function getCanvas(): array
+    {
+        return $this->canvas;
     }
 
     /**
