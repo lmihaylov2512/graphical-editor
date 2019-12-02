@@ -2,6 +2,8 @@
 
 namespace GraphicalEditor\Commands;
 
+use GraphicalEditor\Exceptions\TerminateException;
+
 /**
  * Class Terminate
  * @package GraphicalEditor\Commands
@@ -13,6 +15,6 @@ class Terminate extends BaseCommand
      */
     public function run(): void
     {
-        exit;
+        throw new TerminateException('Terminate');
     }
 }
