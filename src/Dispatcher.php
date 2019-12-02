@@ -9,6 +9,10 @@ use GraphicalEditor\Commands\{
 use GraphicalEditor\Exceptions\InvalidCommandException;
 use GraphicalEditor\Commands\BaseCommand;
 
+/**
+ * Class Dispatcher
+ * @package GraphicalEditor
+ */
 class Dispatcher
 {
     /**
@@ -30,11 +34,20 @@ class Dispatcher
      */
     protected $image;
 
+    /**
+     * Dispatcher constructor.
+     * @param Image $image
+     */
     public function __construct(Image $image)
     {
         $this->image = $image;
     }
 
+    /**
+     * @param string $input
+     * @return BaseCommand
+     * @throws InvalidCommandException
+     */
     public function dispatch(string $input): BaseCommand
     {
         $args = explode(' ', $input);
