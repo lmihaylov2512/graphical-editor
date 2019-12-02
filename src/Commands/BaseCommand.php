@@ -31,6 +31,16 @@ abstract class BaseCommand
     }
 
     /**
+     * Returns an arguments list.
+     *
+     * @return array
+     */
+    public function getArgs(): array
+    {
+        return $this->args;
+    }
+
+    /**
      * Executes the command.
      */
     abstract public function run(): void;
